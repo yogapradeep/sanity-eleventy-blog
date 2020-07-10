@@ -2,24 +2,24 @@ const { DateTime } = require("luxon");
 const util = require('util')
 const CleanCSS = require("clean-css");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
 
   // https://www.11ty.io/docs/quicktips/inline-css/
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
-  eleventyConfig.addFilter("debug", function(value) {
-    return util.inspect(value, {compact: false})
-   });
+  eleventyConfig.addFilter("debug", function (value) {
+    return util.inspect(value, { compact: false })
+  });
 
-   eleventyConfig.addFilter("readableDate", dateObj => {
+  eleventyConfig.addFilter("readableDate", dateObj => {
     return new Date(dateObj).toDateString()
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   });
 
   let markdownIt = require("markdown-it");
@@ -39,7 +39,7 @@ module.exports = function(eleventyConfig) {
     .use(markdownItAnchor, opts)
   );
 
-  eleventyConfig.addFilter("markdownify", function(value) {
+  eleventyConfig.addFilter("markdownify", function (value) {
     const md = new markdownIt(options)
     return md.render(value)
   })
@@ -48,7 +48,8 @@ module.exports = function(eleventyConfig) {
       "md",
       "njk",
       "html",
-      "liquid"
+      "liquid",
+      "ejs",
     ],
 
     // If your site lives in a different subdirectory, change this.
