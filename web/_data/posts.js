@@ -5,18 +5,9 @@ const serializers = require('../utils/serializers')
 const overlayDrafts = require('../utils/overlayDrafts')
 const hasToken = !!client.config().token
 
-const blocksToHtml = require('@sanity/block-content-to-html')
-const client = require('@sanity/client')({
-  projectId: 'nus9vepv',
-  dataset: 'production',
-  useCdn: false
-  // ...client.config()
-})
 
 
-// `h` is a way to build HTML known as hyperscript
-// See https://github.com/hyperhype/hyperscript for more info
-const h = blocksToHtml.h
+
 
 
 function generatePost(post) {
