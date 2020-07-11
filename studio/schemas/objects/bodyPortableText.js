@@ -23,14 +23,14 @@ export default {
         { title: 'H2', value: 'h2' },
         { title: 'H3', value: 'h3' },
         { title: 'H4', value: 'h4' },
-        // { title: 'Quote', value: 'blockquote' }
-        {
-          title: 'Quote',
-          value: 'Quote',
-          blockEditor: {
-            render: Quote
-          }
-        },
+        { title: 'Quote', value: 'blockquote' },
+        // {
+        //   title: 'Quote',
+        //   value: 'Quote',
+        //   blockEditor: {
+        //     render: Quote
+        //   }
+        // },
       ],
       lists: [{ title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' }],
       // Marks let you mark up inline text in the block editor.

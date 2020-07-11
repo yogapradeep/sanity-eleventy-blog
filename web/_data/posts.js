@@ -5,14 +5,29 @@ const serializers = require('../utils/serializers')
 const overlayDrafts = require('../utils/overlayDrafts')
 const hasToken = !!client.config().token
 
-function generatePost (post) {
+const blocksToHtml = require('@sanity/block-content-to-html')
+const client = require('@sanity/client')({
+  projectId: 'nus9vepv',
+  dataset: 'production',
+  useCdn: false
+  // ...client.config()
+})
+
+
+// `h` is a way to build HTML known as hyperscript
+// See https://github.com/hyperhype/hyperscript for more info
+const h = blocksToHtml.h
+
+
+function generatePost(post) {
   return {
     ...post,
-    body: BlocksToMarkdown(post.body, { serializers, ...client.config() })
+    body: BlocksToMarkdown(post.body, { serializers, ...client.config() }),
+
   }
 }
 
-async function getPosts () {
+async function getPosts() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
   const filter = groq`*[_type == "post" && defined(slug) && publishedAt < now()]`
   const projection = groq`{
@@ -43,3 +58,9 @@ async function getPosts () {
 }
 
 module.exports = getPosts
+
+
+
+
+
+
